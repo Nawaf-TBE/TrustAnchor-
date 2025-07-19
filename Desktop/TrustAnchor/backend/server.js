@@ -38,13 +38,34 @@ function verifySignature(publicKeyBase64, signature, hash) {
       type: 'spki'
     });
 
-    // Verify signature
+    // Verify signature using RSA-PSS (compatible with Web Crypto API)
     const signatureBuffer = Buffer.from(signature, 'base64');
     const hashBuffer = Buffer.from(hash, 'hex');
     
     const verify = crypto.createVerify('RSA-SHA256');
     verify.update(hashBuffer);
-    return verify.verify(publicKey, signatureBuffer);
+    
+    // Try RSA-PSS verification first (Web Crypto API format)
+    try {
+      const result = verify.verify({
+        key: publicKey,
+        padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
+        saltLength: crypto.constants.RSA_PSS_SALTLEN_DIGEST
+      }, signatureBuffer);
+      
+      console.log(`🔐 RSA-PSS signature verification: ${result ? 'SUCCESS' : 'FAILED'}`);
+      return result;
+    } catch (pssError) {
+      console.log('RSA-PSS verification failed, trying traditional RSA...');
+      
+      // Fallback to traditional RSA verification
+      const verify2 = crypto.createVerify('RSA-SHA256');
+      verify2.update(hashBuffer);
+      const result = verify2.verify(publicKey, signatureBuffer);
+      
+      console.log(`🔐 Traditional RSA signature verification: ${result ? 'SUCCESS' : 'FAILED'}`);
+      return result;
+    }
   } catch (error) {
     console.error('Signature verification error:', error);
     return false;

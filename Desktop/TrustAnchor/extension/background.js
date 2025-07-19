@@ -16,29 +16,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 // Function to update extension icon based on verification result
 async function updateExtensionIcon(result, tabId) {
     try {
-        let iconPath;
         let badgeText = '';
         let badgeColor = '';
 
         if (result.verified) {
-            iconPath = 'icons/verified-48.png';
             badgeText = '✓';
             badgeColor = '#27ae60';
         } else if (result.hasMetaTag === false) {
-            iconPath = 'icons/default-48.png';
             badgeText = '';
             badgeColor = '#95a5a6';
         } else {
-            iconPath = 'icons/unverified-48.png';
             badgeText = '✗';
             badgeColor = '#e74c3c';
         }
-
-        // Update the extension icon
-        await chrome.action.setIcon({
-            path: iconPath,
-            tabId: tabId
-        });
 
         // Update badge text and color
         await chrome.action.setBadgeText({
@@ -63,21 +53,17 @@ async function updateExtensionIcon(result, tabId) {
             tabId: tabId
         });
 
-        console.log('[Trust Anchor Background] Icon updated for tab:', tabId, 'Status:', result.verified ? 'verified' : 'not verified');
+        console.log('[Trust Anchor Background] Badge updated for tab:', tabId, 'Status:', result.verified ? 'verified' : 'not verified');
 
     } catch (error) {
-        console.error('[Trust Anchor Background] Failed to update icon:', error);
+        console.error('[Trust Anchor Background] Failed to update badge:', error);
     }
 }
 
-// Reset icon when tab is updated or navigation occurs
+// Reset badge when tab is updated or navigation occurs
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'loading') {
-        // Reset to default icon while page loads
-        chrome.action.setIcon({
-            path: 'icons/default-48.png',
-            tabId: tabId
-        });
+        // Reset badge while page loads
         chrome.action.setBadgeText({
             text: '',
             tabId: tabId

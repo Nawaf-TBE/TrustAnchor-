@@ -79,10 +79,10 @@ function renderVerificationStatus(result, url) {
             </div>
 
             <div class="action-buttons">
-                <button class="btn btn-primary" onclick="refreshVerification()">
+                <button class="btn btn-primary" id="refreshBtn">
                     🔄 Refresh
                 </button>
-                <button class="btn btn-secondary" onclick="openDashboard()">
+                <button class="btn btn-secondary" id="dashboardBtn">
                     🔧 Dashboard
                 </button>
             </div>
@@ -102,8 +102,8 @@ async function loadVerificationStatus() {
         const displayUrl = url.length > 40 ? url.substring(0, 40) + '...' : url;
         urlDiv.textContent = displayUrl;
 
-        // Check if this is a localhost:3000 page
-        if (!url.startsWith('http://localhost:3000/')) {
+        // Check if this is a localhost page (3000 or 8080)
+        if (!url.startsWith('http://localhost:3000/') && !url.startsWith('http://localhost:8080/')) {
             contentDiv.innerHTML = `
                 <div class="status-card">
                     <div class="status-indicator">
@@ -112,7 +112,7 @@ async function loadVerificationStatus() {
                     </div>
                     <div class="status-details unknown">
                         <h3>Information</h3>
-                        <p>Trust Anchor verification only works on localhost:3000 pages. Navigate to a Trust Anchor enabled page to see verification status.</p>
+                        <p>Trust Anchor verification only works on localhost pages (port 3000 or 8080). Navigate to a Trust Anchor enabled page to see verification status.</p>
                     </div>
                 </div>
             `;
@@ -144,8 +144,8 @@ async function loadVerificationStatus() {
     }
 }
 
-// Global functions for button clicks
-window.refreshVerification = async function() {
+// Event listeners for button clicks
+async function refreshVerification() {
     try {
         const tab = await getCurrentTab();
         
@@ -168,14 +168,25 @@ window.refreshVerification = async function() {
         console.error('Error refreshing verification:', error);
         alert('Error refreshing verification. Make sure you are on a Trust Anchor enabled page.');
     }
-};
+}
 
-window.openDashboard = function() {
+function openDashboard() {
     chrome.tabs.create({ url: 'http://localhost:3000' });
     window.close();
-};
+}
 
 // Initialize popup when DOM is loaded
-document.addEventListener('DOMContentLoaded', loadVerificationStatus);
+document.addEventListener('DOMContentLoaded', () => {
+    loadVerificationStatus();
+    
+    // Add event listeners for buttons
+    document.addEventListener('click', (e) => {
+        if (e.target.id === 'refreshBtn') {
+            refreshVerification();
+        } else if (e.target.id === 'dashboardBtn') {
+            openDashboard();
+        }
+    });
+});
 
 console.log('[Trust Anchor Popup] Popup script loaded'); 
