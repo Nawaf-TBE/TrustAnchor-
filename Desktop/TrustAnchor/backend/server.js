@@ -151,16 +151,16 @@ app.get('/api/keys/:keyId', (req, res) => {
   }
 });
 
-// 3. POST /api/verify - Verify content trust signature
+// 3. POST /api/verify - Verify content trust signature (OpenAPI compliant)
 app.post('/api/verify', async (req, res) => {
   try {
     const { url } = req.body;
     
     if (!url || typeof url !== 'string') {
-      return res.status(400).json({
-        success: false,
+      return res.json({
         verified: false,
-        reason: 'Missing or invalid URL',
+        status: "❌ Verification Failed",
+        details: "Missing or invalid URL",
         timestamp: new Date().toISOString()
       });
     }
@@ -170,10 +170,10 @@ app.post('/api/verify', async (req, res) => {
     try {
       targetUrl = new URL(url);
     } catch (error) {
-      return res.status(400).json({
-        success: false,
+      return res.json({
         verified: false,
-        reason: 'Invalid URL format',
+        status: "❌ Verification Failed",
+        details: "Invalid URL format",
         timestamp: new Date().toISOString()
       });
     }
@@ -191,9 +191,9 @@ app.post('/api/verify', async (req, res) => {
 
     if (!response.ok) {
       return res.json({
-        success: false,
         verified: false,
-        reason: `Failed to fetch content: ${response.status} ${response.statusText}`,
+        status: "❌ Verification Failed",
+        details: `Failed to fetch content: ${response.status} ${response.statusText}`,
         timestamp: new Date().toISOString()
       });
     }
@@ -206,9 +206,9 @@ app.post('/api/verify', async (req, res) => {
     
     if (trustAnchorMeta.length === 0) {
       return res.json({
-        success: true,
         verified: false,
-        reason: 'No ai-trust-anchor meta tag found',
+        status: "❌ Verification Failed",
+        details: "No ai-trust-anchor meta tag found",
         timestamp: new Date().toISOString()
       });
     }
@@ -220,9 +220,9 @@ app.post('/api/verify', async (req, res) => {
       trustData = JSON.parse(content);
     } catch (error) {
       return res.json({
-        success: true,
         verified: false,
-        reason: 'Invalid JSON in ai-trust-anchor meta tag',
+        status: "❌ Verification Failed",
+        details: "Invalid JSON in ai-trust-anchor meta tag",
         timestamp: new Date().toISOString()
       });
     }
@@ -231,9 +231,9 @@ app.post('/api/verify', async (req, res) => {
     
     if (!expectedHash || !signature || !keyId) {
       return res.json({
-        success: true,
         verified: false,
-        reason: 'Missing hash, signature, or keyId in trust anchor data',
+        status: "❌ Verification Failed",
+        details: "Missing hash, signature, or keyId in trust anchor data",
         timestamp: new Date().toISOString()
       });
     }
@@ -242,9 +242,9 @@ app.post('/api/verify', async (req, res) => {
     const publicKey = publicKeys.get(keyId);
     if (!publicKey) {
       return res.json({
-        success: true,
         verified: false,
-        reason: `Public key not found for keyId: ${keyId}`,
+        status: "❌ Verification Failed",
+        details: `Public key not found for keyId: ${keyId}`,
         timestamp: new Date().toISOString()
       });
     }
@@ -261,39 +261,38 @@ app.post('/api/verify', async (req, res) => {
     const isSignatureValid = verifySignature(publicKey, signature, actualHash);
     
     let verified = false;
-    let reason = '';
+    let status = "";
+    let details = "";
     
     if (actualHash !== expectedHash) {
-      reason = 'Content hash mismatch - content may have been modified';
+      verified = false;
+      status = "❌ Verification Failed";
+      details = "Content hash mismatch - content may have been modified";
     } else if (!isSignatureValid) {
-      reason = 'Invalid signature - signature verification failed';
+      verified = false;
+      status = "❌ Verification Failed";
+      details = "Invalid signature - signature verification failed";
     } else {
       verified = true;
-      reason = 'Content successfully verified';
+      status = "✅ Content Verified";
+      details = "The content on this page was successfully verified against the signature provided by the owner.";
     }
 
-    console.log(`✅ Verification result: ${verified ? 'VERIFIED' : 'FAILED'} - ${reason}`);
+    console.log(`✅ Verification result: ${verified ? 'VERIFIED' : 'FAILED'} - ${details}`);
 
     res.json({
-      success: true,
       verified,
-      reason,
-      timestamp: new Date().toISOString(),
-      details: {
-        url,
-        keyId,
-        hashMatch: actualHash === expectedHash,
-        signatureValid: isSignatureValid,
-        bodyLength: bodyText.length
-      }
+      status,
+      details,
+      timestamp: new Date().toISOString()
     });
 
   } catch (error) {
     console.error('Error during verification:', error);
-    res.status(500).json({
-      success: false,
+    res.json({
       verified: false,
-      reason: `Verification error: ${error.message}`,
+      status: "❌ Verification Failed",
+      details: `Verification error: ${error.message}`,
       timestamp: new Date().toISOString()
     });
   }
