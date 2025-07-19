@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Anchor Demo - Sample Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .status-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            color: #718096;
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        .trust-info {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .trust-info h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .trust-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: #4299e1;
+        }
+
+        .step-number {
+            background: #4299e1;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step h3 {
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .api-demo {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .api-demo h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: #4299e1;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #3182ce;
+        }
+
+        .btn.secondary {
+            background: #48bb78;
+        }
+
+        .btn.secondary:hover {
+            background: #38a169;
+        }
+
+        .btn.danger {
+            background: #f56565;
+        }
+
+        .btn.danger:hover {
+            background: #e53e3e;
+        }
+
+        .result {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer p {
+            color: #718096;
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #4299e1;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌐 Sample Website</h1>
+            <p>Trust Anchor Verification Demo Page</p>
+            <div class="status-banner">
+                This page is used to demonstrate the Trust Anchor verification system
+            </div>
+        </div>
+
+        <div class="trust-info">
+            <h2>🔒 How Trust Anchor Verification Works</h2>
+            <div class="trust-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Visit Website</h3>
+                    <p>Navigate to any website with the Trust Anchor extension enabled</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Auto-Check</h3>
+                    <p>Extension automatically checks if the domain has a registered trust anchor</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Status Display</h3>
+                    <p>Visual indicator shows trust status (Trusted, Untrusted, or Unknown)</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Manage</h3>
+                    <p>Add new trust anchors or verify existing ones through the extension popup</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="card">
+                <h2>🛡️ Security Features</h2>
+                <p>This Trust Anchor system provides several security features:</p>
+                <ul>
+                    <li>Certificate fingerprint verification</li>
+                    <li>Domain-based trust management</li>
+                    <li>Visual security indicators</li>
+                    <li>Real-time verification status</li>
+                    <li>Browser extension integration</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>🔧 Technical Details</h2>
+                <p>The system consists of:</p>
+                <ul>
+                    <li>Node.js backend API server</li>
+                    <li>In-memory trust anchor storage</li>
+                    <li>Chrome extension for verification</li>
+                    <li>Web dashboard for management</li>
+                    <li>RESTful API endpoints</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>📋 Usage Instructions</h2>
+                <p>To test the system:</p>
+                <ul>
+                    <li>Start the backend server: <code>npm start</code></li>
+                    <li>Load the Chrome extension</li>
+                    <li>Visit this demo page</li>
+                    <li>Click the extension icon to manage trust anchors</li>
+                    <li>Check the dashboard at localhost:3000</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="api-demo">
+            <h2>🔌 API Demo</h2>
+            <p style="text-align: center; color: #718096; margin-bottom: 20px;">
+                Test the Trust Anchor API directly from this page
+            </p>
+            
+            <div class="demo-buttons">
+                <button class="btn" onclick="testAPI('health')">Health Check</button>
+                <button class="btn secondary" onclick="testAPI('anchors')">List Anchors</button>
+                <button class="btn secondary" onclick="testAPI('add')">Add Sample Anchor</button>
+                <button class="btn danger" onclick="testAPI('verify')">Verify Sample</button>
+            </div>
+            
+            <div id="apiResult" class="result" style="display: none;">
+                <div>API Response will appear here...</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Current Domain: <strong id="currentDomain"></strong></p>
+            <p>This is a demo page for the Trust Anchor verification system.</p>
+            <p>
+                <a href="http://localhost:3000" target="_blank">Open Dashboard</a> | 
+                <a href="#" onclick="testExtension()">Test Extension</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Display current domain
+        document.getElementById('currentDomain').textContent = window.location.hostname;
+
+        const API_BASE = 'http://localhost:3000/api';
+
+        async function testAPI(endpoint) {
+            const resultDiv = document.getElementById('apiResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div style="color: #718096;">Loading...</div>';
+
+            try {
+                let response, data;
+                const timestamp = new Date().toISOString();
+
+                switch (endpoint) {
+                    case 'health':
+                        response = await fetch(`${API_BASE}/health`);
+                        data = await response.json();
+                        break;
+
+                    case 'anchors':
+                        response = await fetch(`${API_BASE}/trust-anchors`);
+                        data = await response.json();
+                        break;
+
+                    case 'add':
+                        response = await fetch(`${API_BASE}/trust-anchors`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                domain: 'demo.example.com',
+                                certificate: `demo-cert-${Date.now()}`
+                            })
+                        });
+                        data = await response.json();
+                        break;
+
+                    case 'verify':
+                        // First check if demo anchor exists, if not create it
+                        let verifyResponse = await fetch(`${API_BASE}/trust-anchors/demo.example.com/verify`, {
+                            method: 'POST'
+                        });
+                        
+                        if (verifyResponse.status === 404) {
+                            // Create it first
+                            await fetch(`${API_BASE}/trust-anchors`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    domain: 'demo.example.com',
+                                    certificate: `demo-cert-${Date.now()}`
+                                })
+                            });
+                            // Try verify again
+                            verifyResponse = await fetch(`${API_BASE}/trust-anchors/demo.example.com/verify`, {
+                                method: 'POST'
+                            });
+                        }
+                        
+                        data = await verifyResponse.json();
+                        break;
+
+                    default:
+                        throw new Error('Unknown endpoint');
+                }
+
+                // Format and display result
+                resultDiv.innerHTML = `
+                    <div style="color: #22543d; font-weight: bold; margin-bottom: 10px;">
+                        ✅ ${endpoint.toUpperCase()} - Status: ${response.status}
+                    </div>
+                    <div style="color: #4a5568;">
+                        <strong>Response:</strong><br>
+                        <pre style="background: white; padding: 10px; border-radius: 4px; margin-top: 5px; white-space: pre-wrap;">${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div style="color: #742a2a; font-weight: bold; margin-bottom: 10px;">
+                        ❌ ERROR - ${endpoint.toUpperCase()}
+                    </div>
+                    <div style="color: #4a5568;">
+                        <strong>Error:</strong> ${error.message}<br>
+                        <em>Make sure the Trust Anchor server is running on localhost:3000</em>
+                    </div>
+                `;
+            }
+        }
+
+        function testExtension() {
+            alert('To test the extension:\n\n1. Load the extension in Chrome\n2. Click the Trust Anchor icon in the toolbar\n3. The popup will show trust status for this domain\n4. Try adding this domain as a trust anchor');
+        }
+
+        // Auto-test health check on page load
+        setTimeout(() => {
+            testAPI('health');
+        }, 1000);
+    </script>
+</body>
+</html> 
