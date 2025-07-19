@@ -196,6 +196,24 @@ function createMetaTagContent(hash, signature, keyId) {
 }
 
 /**
+ * Reset the HTML file to placeholder format
+ */
+async function resetHtmlFile() {
+    console.log('🔄 Resetting HTML file to placeholder format...');
+    
+    const htmlContent = await fs.readFile(DEMO_FILE, 'utf8');
+    
+    // Replace any existing meta tag with placeholder
+    const resetHtml = htmlContent.replace(
+        /<meta\s+name="ai-trust-anchor"[^>]*>/,
+        '<meta name="ai-trust-anchor" content="{}">'
+    );
+    
+    await fs.writeFile(DEMO_FILE, resetHtml, 'utf8');
+    console.log('✅ HTML file reset to placeholder format');
+}
+
+/**
  * Update the HTML file with the signed meta tag
  */
 async function updateHtmlFile(html, newMetaTag) {
@@ -287,25 +305,28 @@ async function runDemo() {
         // 3. Register public key with server
         const keyId = await registerPublicKey(publicKey);
 
-        // 4. Read the demo HTML file
+        // 4. Reset HTML file to placeholder format
+        await resetHtmlFile();
+        
+        // 5. Read the demo HTML file
         const htmlContent = await readDemoFile();
 
-        // 5. Extract body content (same as backend verification)
+        // 6. Extract body content (same as backend verification)
         const bodyContent = extractBodyContent(htmlContent);
 
-        // 6. Hash the content
+        // 7. Hash the content
         const contentHash = hashContent(bodyContent);
 
-        // 7. Sign the hash
+        // 8. Sign the hash
         const signature = signHash(contentHash, privateKey);
 
-        // 8. Create the meta tag
+        // 9. Create the meta tag
         const metaTag = createMetaTagContent(contentHash, signature, keyId);
 
-        // 9. Update the HTML file
+        // 10. Update the HTML file
         await updateHtmlFile(htmlContent, metaTag);
 
-        // 10. Verify with backend
+        // 11. Verify with backend
         await verifyWithBackend();
 
         console.log('\n🎉 Demo automation completed successfully!');
@@ -360,5 +381,6 @@ module.exports = {
     startServer,
     generateKeyPair,
     registerPublicKey,
+    resetHtmlFile,
     cleanup
 }; 
