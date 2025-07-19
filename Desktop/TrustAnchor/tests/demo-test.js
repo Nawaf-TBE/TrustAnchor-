@@ -201,14 +201,16 @@ function createMetaTagContent(hash, signature, keyId) {
 async function updateHtmlFile(html, newMetaTag) {
     console.log('📝 Updating HTML file with signed meta tag...');
     
+    // More robust regex to handle various placeholder formats
+    const placeholderRegex = /<meta\s+name="ai-trust-anchor"\s+content="\{\}"[^>]*>/;
+    
     // Replace the placeholder meta tag
-    const updatedHtml = html.replace(
-        /<meta name="ai-trust-anchor" content="\{\}">/,
-        newMetaTag
-    );
+    const updatedHtml = html.replace(placeholderRegex, newMetaTag);
     
     // Verify the replacement worked
     if (updatedHtml === html) {
+        console.log('❌ Current meta tag in file:', html.match(/<meta\s+name="ai-trust-anchor"[^>]*>/)?.[0] || 'Not found');
+        console.log('❌ Expected pattern:', placeholderRegex.toString());
         throw new Error('Failed to find and replace placeholder meta tag');
     }
     
