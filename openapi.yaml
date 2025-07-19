@@ -4,7 +4,7 @@ info:
   description: A service to cryptographically verify the authenticity of web page content.
   version: "1.0.0"
 servers:
-  - url: '[YOUR DEPLOYED VERCEL URL]'
+  - url: 'https://trust-anchor-b6c2f01ch-nawafs-projects-de2c7642.vercel.app'
 paths:
   /api/verify:
     post:
