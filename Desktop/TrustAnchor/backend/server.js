@@ -15,6 +15,7 @@ const publicKeys = new Map(); // keyId -> publicKey (Base64)
 app.use(cors()); // Allow all origins
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, '../frontend')));
+app.use('/demo', express.static(path.join(__dirname, '../demo')));
 
 // Utility function to generate keyId from publicKey
 function generateKeyId(publicKey) {
