@@ -1,0 +1,29 @@
+{
+  "name": "trust-anchor",
+  "version": "1.0.0",
+  "description": "A secure and reliable trust anchor verification system",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "demo": "node tests/demo-test.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "trust-anchor",
+    "verification",
+    "security",
+    "authentication"
+  ],
+  "author": "Nawaf-TBE",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "node-fetch": "^3.3.2",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

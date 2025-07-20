@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Trust Anchor Verifier",
+  "version": "1.0.0",
+  "description": "Verify website content authenticity using Trust Anchor signatures",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*",
+    "http://localhost:8080/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Trust Anchor Verifier"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:3000/*", "http://localhost:8080/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*.png"],
+      "matches": ["http://localhost:3000/*", "http://localhost:8080/*"]
+    }
+  ]
+} 
