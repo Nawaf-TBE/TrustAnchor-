@@ -8,9 +8,6 @@ Trust Anchor is a complete cryptographic content verification system that gives 
 
 ---
 
-## 🚀 Live Demo Video (2 Mins)
-
-**[PASTE YOUR 2-MINUTE LOOM/YOUTUBE VIDEO LINK HERE]**
 
 ## 🧠 The Problem
 
