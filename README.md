@@ -77,45 +77,8 @@ To run this project locally for evaluation:
     -   Run the automated demo setup script: `node tests/demo-test.js` to prepare the verifiable demo page.
     -   Load the `/extension` directory as an unpacked extension in Chrome/Brave to test the browser integration.
 
-## 🎬 Demo Scenarios
-
-### Scene 1: The Problem
-Demonstrates how AI can hallucinate about product specifications, showing the real-world impact of misinformation.
-
-### Scene 2: Publisher Workflow
-Shows how easy it is for content creators to add Trust Anchor verification to their pages using our dashboard.
-
-### Scene 3: AI Verification
-Demonstrates how ChatGPT can now verify content authenticity in real-time using our Custom GPT Action.
-
-## 🔐 Security Features
-
-- **Zero-Knowledge Design:** Private keys never leave the user's browser
-- **Cryptographic Signatures:** Uses RSA-PSS for robust digital signatures
-- **Content Integrity:** SHA-256 hashing ensures content hasn't been modified
-- **Public Key Infrastructure:** Verifiable key management system
-
-## 📊 Performance & Scalability
-
-- **Lightweight:** Single meta tag integration
-- **Fast:** Sub-second verification times
-- **Scalable:** Stateless API design
-- **Compatible:** Works with any web framework
-
-## 🤝 Contributing
-
-This is a hackathon submission. For questions or feedback, please open an issue in this repository.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ---
 
 ## 👥 The Team: TrustAnchor
 
 - **Nawaf Altalai**
-
----
-
-**Built with ❤️ for a more trustworthy web**
