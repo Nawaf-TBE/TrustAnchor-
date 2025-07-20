@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Test Page</title>
+    <meta name="ai-trust-anchor" content='{"hash":"e88bbb57424c713f39b09f475ee72d4005effa4028be2c2d244d52531ebea76d","signature":"C4yvPmCjfYhXOe3gUS+doBQnUMSOIac06Oy/FDOp2yKu7OQz/0+BHp+l72RvQ5l9URBBFqT+cDq262uiEKhgjH5mSLXMK7DPNP54EExGM7okZldl/MIpDjorW7i99RQAJ3l24JOZSrMxqCMfKCvtSUjBNmd/GHtj9JOI5zgFpI9FBBXhIiX/M5AsSSxRVepKF52YBHYLBVbaa3SFgqgOL5uJy1KOpr6FQyt5nsJQ4NMdmA5O2X5cwmZ0uc3L4Tp1mDaiB8p8bFmMkdARmI8X1S90xbA9/TBNvMePifJ8FlbdYxZds3A3qTi5SWotTOcpOnCKNv3wpAHUgRXwKjTI1A==","keyId":"958938b65648a7a4264ee9fc42bebc589e8de10158d320fa885c3bc09672fcda"}'>
+</head>
+<body>
+    <h1>Extension Test Page</h1>
+    <p>This page has a Trust Anchor meta tag and should be verified by the extension.</p>
+    <p>The extension icon should show a green checkmark (✓) and the popup should show "Verified" status.</p>
+    
+    <div style="margin-top: 20px; padding: 15px; background: #f0f8ff; border: 1px solid #ccc; border-radius: 5px;">
+        <h3>Expected Extension Behavior:</h3>
+        <ul>
+            <li>✅ Extension icon should be green with ✓ badge</li>
+            <li>✅ Extension popup should show "Verified" status</li>
+            <li>✅ Extension popup should show "This content has been verified by Trust Anchor"</li>
+            <li>✅ Extension title should show "Trust Anchor: Content Verified ✓"</li>
+        </ul>
+    </div>
+</body>
+</html> 

@@ -1,10 +1,10 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: Trust Anchor Verification API
   description: A service to cryptographically verify the authenticity of web page content.
   version: "1.0.0"
 servers:
-  - url: 'https://trust-anchor.vercel.app'
+  - url: 'https://localhost:3000'
 paths:
   /api/verify:
     post:

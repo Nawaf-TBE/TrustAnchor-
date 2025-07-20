@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCorp Z-1 Laptop - Official Specifications</title>
+    <meta name="description" content="Official specifications for the TechCorp Z-1 laptop with verified battery life information.">
+    
+    <meta name="ai-trust-anchor" content='{"hash":"e88bbb57424c713f39b09f475ee72d4005effa4028be2c2d244d52531ebea76d","signature":"WmFDFuzv7fUSe6kj9qltiJST9O5qlJwnJUaiQP5hxwlSAigUuCEiK70PEP1zFKLK16ESgUCfSFn546YK7VjhfYLYXWVb5pVtLuudZ4eP7Cu84YREircDSJeMxt6iu8ryfpLV+wcMi0UFmEQjWn9narGSAqbrJ+aKG4rUoI3K6t9NregOFgEu2l0RZQch9bmtJ6465IEpntnV8Z0p4w/noWagz2pzmTeWMZzKF4Fla70T3IVYlsIIxVW3Gbo/dsOfwrOsQh0KBcWXBYTBCfAewGmPcN/V13zFLx5WwdFqIQyOhtaSiKitkPlG1VL0aKjvp66430KfJxPcQSslsFROOQ==","keyId":"a87dcbb425d23599698b29271f0c546e41b1e027f46e9ddad0cbdb1246fb01bb"}'>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .spec-card {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .spec-card h3 {
+            color: #2b6cb0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .spec-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .spec-description {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+        
+        .verification-banner {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .verification-banner.hidden {
+            display: none;
+        }
+        
+        .verification-icon {
+            font-size: 1.5rem;
+        }
+        
+        .verification-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .trust-anchor-info {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .trust-anchor-info h3 {
+            color: #2b6cb0;
+            margin-bottom: 10px;
+        }
+        
+        .trust-anchor-info p {
+            color: #2c5282;
+            margin-bottom: 10px;
+        }
+        
+        .meta-tag-display {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            word-break: break-all;
+            margin-top: 15px;
+        }
+        
+        .meta-tag-display.hidden {
+            display: none;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #ed8936;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔬 TechCorp Z-1 Laptop</h1>
+            <p>Official Product Specifications</p>
+        </div>
+        
+        <div class="content">
+            <h2>Product Overview</h2>
+            <p>The TechCorp Z-1 is our flagship laptop designed for professionals who demand reliability, performance, and innovation. Every specification on this page has been cryptographically verified to ensure accuracy and prevent misinformation.</p>
+            
+            <div class="verification-banner hidden" id="verificationBanner">
+                <div class="verification-icon">✅</div>
+                <div class="verification-text">This content has been verified by Trust Anchor</div>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3>Battery Life</h3>
+                    <div class="spec-value" id="batteryLife">22 hours</div>
+                    <div class="spec-description">Real-world usage with standard applications</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Processor</h3>
+                    <div class="spec-value">Intel Core i9-13900H</div>
+                    <div class="spec-description">14-core, 20-thread processor with 24MB cache</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Memory</h3>
+                    <div class="spec-value">32GB DDR5</div>
+                    <div class="spec-description">5600MHz dual-channel memory</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Storage</h3>
+                    <div class="spec-value">2TB NVMe SSD</div>
+                    <div class="spec-description">PCIe 4.0 with read speeds up to 7,000 MB/s</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Display</h3>
+                    <div class="spec-value">15.6" 4K OLED</div>
+                    <div class="spec-description">3840x2160 resolution, 100% DCI-P3 color gamut</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Weight</h3>
+                    <div class="spec-value">3.2 lbs</div>
+                    <div class="spec-description">Ultra-lightweight magnesium alloy chassis</div>
+                </div>
+            </div>
+            
+            <div class="trust-anchor-info">
+                <h3>🔐 Trust Anchor Verification</h3>
+                <p>This page uses Trust Anchor technology to ensure all specifications are authentic and haven't been tampered with. The content is cryptographically signed and can be verified by any Trust Anchor-compatible system.</p>
+                <p><strong>Verification Status:</strong> <span id="verificationStatus">Checking...</span></p>
+                <div class="meta-tag-display hidden" id="metaTagDisplay">
+                    <strong>Trust Anchor Meta Tag:</strong><br>
+                    <span id="metaTagContent"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Ready to Experience the Future?</h2>
+            <p>Get your hands on the TechCorp Z-1 and experience the perfect blend of power, portability, and verified specifications.</p>
+            <button class="cta-button">Order Now - $2,499</button>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2024 TechCorp. All specifications verified by Trust Anchor.</p>
+        </div>
+    </div>
+
+    <script>
+        // Check for Trust Anchor meta tag
+        function checkTrustAnchor() {
+            const metaTag = document.querySelector('meta[name="ai-trust-anchor"]');
+            
+            if (metaTag) {
+                try {
+                    const verificationData = JSON.parse(metaTag.content);
+                    
+                    // Show verification banner
+                    document.getElementById('verificationBanner').classList.remove('hidden');
+                    document.getElementById('verificationStatus').textContent = '✅ Verified';
+                    
+                    // Show meta tag display
+                    document.getElementById('metaTagDisplay').classList.remove('hidden');
+                    document.getElementById('metaTagContent').textContent = metaTag.outerHTML;
+                    
+                    console.log('Trust Anchor verification data found:', verificationData);
+                } catch (error) {
+                    console.error('Error parsing Trust Anchor meta tag:', error);
+                    document.getElementById('verificationStatus').textContent = '❌ Invalid meta tag format';
+                }
+            } else {
+                document.getElementById('verificationStatus').textContent = '❌ No verification meta tag found';
+            }
+        }
+        
+        // Check for Trust Anchor on page load
+        document.addEventListener('DOMContentLoaded', checkTrustAnchor);
+        
+        // Also check after a short delay in case meta tag is added dynamically
+        setTimeout(checkTrustAnchor, 1000);
+    </script>
+</body>
+</html> 

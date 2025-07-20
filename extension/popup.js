@@ -50,7 +50,7 @@ function renderVerificationStatus(result, url) {
         detailsClass = 'not-verified';
     }
 
-    const reason = result.reason || 'No reason provided';
+    const reason = result.reason || result.details || 'No reason provided';
     const timestamp = formatTimestamp(result.timestamp);
 
     return `
@@ -171,7 +171,7 @@ async function refreshVerification() {
 }
 
 function openDashboard() {
-    chrome.tabs.create({ url: 'http://localhost:3000' });
+            chrome.tabs.create({ url: 'http://localhost:8080/frontend/index.html' });
     window.close();
 }
 
