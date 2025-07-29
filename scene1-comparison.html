@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Anchor - Before vs After</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .before-card {
+            border: 3px solid #e53e3e;
+        }
+        
+        .before-card h2 {
+            color: #e53e3e;
+        }
+        
+        .after-card {
+            border: 3px solid #38a169;
+        }
+        
+        .after-card h2 {
+            color: #38a169;
+        }
+        
+        .spec-item {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .spec-item h3 {
+            color: #2b6cb0;
+            margin-bottom: 5px;
+        }
+        
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        .warning-banner {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+        
+        .verification-banner {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: 600;
+        }
+        
+        .highlight {
+            background: #fef5e7;
+            border: 2px solid #ed8936;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .success-highlight {
+            background: #f0fff4;
+            border: 2px solid #48bb78;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #ed8936;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Trust Anchor</h1>
+            <p>Before vs After: Content Verification</p>
+        </div>
+        
+        <div class="comparison-grid">
+            <div class="comparison-card before-card">
+                <h2>❌ WITHOUT Trust Anchor</h2>
+                
+                <div class="warning-banner">
+                    ⚠️ WARNING: Content may have been tampered with
+                </div>
+                
+                <div class="spec-item">
+                    <h3>Battery Life</h3>
+                    <div class="spec-value" style="color: red;">35 hours</div>
+                    <div class="highlight">
+                        <strong>⚠️ Suspicious:</strong> This value seems unusually high and may have been modified.
+                    </div>
+                </div>
+                
+                <div class="spec-item">
+                    <h3>Processor</h3>
+                    <div class="spec-value">Intel Core i9-13900H</div>
+                </div>
+                
+                <div class="spec-item">
+                    <h3>Memory</h3>
+                    <div class="spec-value">32GB DDR5</div>
+                </div>
+                
+                <div class="highlight">
+                    <strong>🚨 Problems:</strong>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>No way to verify authenticity</li>
+                        <li>Content could be tampered with</li>
+                        <li>Users can't trust the information</li>
+                        <li>Risk of false advertising</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="comparison-card after-card">
+                <h2>✅ WITH Trust Anchor</h2>
+                
+                <div class="verification-banner">
+                    ✅ This content has been verified by Trust Anchor
+                </div>
+                
+                <div class="spec-item">
+                    <h3>Battery Life</h3>
+                    <div class="spec-value" style="color: #38a169;">22 hours</div>
+                    <div class="success-highlight">
+                        <strong>✅ Verified:</strong> This value has been cryptographically verified as authentic.
+                    </div>
+                </div>
+                
+                <div class="spec-item">
+                    <h3>Processor</h3>
+                    <div class="spec-value">Intel Core i9-13900H</div>
+                </div>
+                
+                <div class="spec-item">
+                    <h3>Memory</h3>
+                    <div class="spec-value">32GB DDR5</div>
+                </div>
+                
+                <div class="success-highlight">
+                    <strong>🔐 Benefits:</strong>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>Cryptographic verification</li>
+                        <li>Tamper-proof content</li>
+                        <li>Users can trust the information</li>
+                        <li>Prevents false advertising</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>See Trust Anchor in Action</h2>
+            <p>Watch how easy it is to implement cryptographic verification for your web content.</p>
+            <button class="cta-button" onclick="startDemo()">Start Demo</button>
+        </div>
+    </div>
+
+    <script>
+        function startDemo() {
+            // Navigate to Scene 2
+            window.location.href = '/frontend/index.html';
+        }
+        
+        // Add some visual effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make the suspicious battery life value blink
+            const suspiciousValue = document.querySelector('.before-card .spec-value');
+            setInterval(() => {
+                suspiciousValue.style.color = suspiciousValue.style.color === 'red' ? '#2d3748' : 'red';
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCorp Z-1 Laptop - Official Specifications</title>
+    <meta name="description" content="Official specifications for the TechCorp Z-1 laptop with verified battery life information.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .spec-card {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .spec-card h3 {
+            color: #2b6cb0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .spec-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .spec-description {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+        
+        .warning-banner {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        .warning-icon {
+            font-size: 1.5rem;
+        }
+        
+        .warning-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .problem-section {
+            background: #fed7d7;
+            border: 1px solid #feb2b2;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .problem-section h3 {
+            color: #742a2a;
+            margin-bottom: 10px;
+        }
+        
+        .problem-section p {
+            color: #742a2a;
+            margin-bottom: 10px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #ed8936;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 30px;
+        }
+        
+        .highlight {
+            background: #fef5e7;
+            border: 2px solid #ed8936;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        
+        .highlight strong {
+            color: #d69e2e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔬 TechCorp Z-1 Laptop</h1>
+            <p>Official Product Specifications</p>
+        </div>
+        
+        <div class="content">
+            <h2>Product Overview</h2>
+            <p>The TechCorp Z-1 is our flagship laptop designed for professionals who demand reliability, performance, and innovation.</p>
+            
+            <div class="warning-banner">
+                <div class="warning-icon">⚠️</div>
+                <div class="warning-text">WARNING: This content may have been tampered with</div>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3>Battery Life</h3>
+                    <div class="spec-value" id="batteryLife">35 hours</div>
+                    <div class="spec-description">Real-world usage with standard applications</div>
+                    <div class="highlight">
+                        <strong>⚠️ Suspicious:</strong> This value seems unusually high and may have been modified.
+                    </div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Processor</h3>
+                    <div class="spec-value">Intel Core i9-13900H</div>
+                    <div class="spec-description">14-core, 20-thread processor with 24MB cache</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Memory</h3>
+                    <div class="spec-value">32GB DDR5</div>
+                    <div class="spec-description">5600MHz dual-channel memory</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Storage</h3>
+                    <div class="spec-value">2TB NVMe SSD</div>
+                    <div class="spec-description">PCIe 4.0 with read speeds up to 7,000 MB/s</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Display</h3>
+                    <div class="spec-value">15.6" 4K OLED</div>
+                    <div class="spec-description">3840x2160 resolution, 100% DCI-P3 color gamut</div>
+                </div>
+                
+                <div class="spec-card">
+                    <h3>Weight</h3>
+                    <div class="spec-value">3.2 lbs</div>
+                    <div class="spec-description">Ultra-lightweight magnesium alloy chassis</div>
+                </div>
+            </div>
+            
+            <div class="problem-section">
+                <h3>🚨 The Problem: Content Tampering</h3>
+                <p><strong>Issue:</strong> The battery life specification shows "35 hours" but this seems suspiciously high for a laptop.</p>
+                <p><strong>Risk:</strong> Without cryptographic verification, users can't trust that this content hasn't been modified by malicious actors.</p>
+                <p><strong>Impact:</strong> Customers might make purchasing decisions based on false information.</p>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>How Can We Trust This Content?</h2>
+            <p>Without cryptographic verification, there's no way to know if these specifications are authentic or have been tampered with.</p>
+            <button class="cta-button" onclick="showSolution()">See the Solution</button>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2024 TechCorp. Specifications may have been modified.</p>
+        </div>
+    </div>
+
+    <script>
+        function showSolution() {
+            alert('Trust Anchor provides cryptographic verification to ensure content authenticity. Let me show you how it works!');
+            // You can navigate to Scene 2 here
+            // window.location.href = '/frontend/index.html';
+        }
+        
+        // Add some visual effects to emphasize the problem
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make the suspicious battery life value blink
+            const batteryLife = document.getElementById('batteryLife');
+            setInterval(() => {
+                batteryLife.style.color = batteryLife.style.color === 'red' ? '#2d3748' : 'red';
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

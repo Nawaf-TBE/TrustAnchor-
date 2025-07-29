@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: Trust Anchor Verification API
+  description: A service to cryptographically verify the authenticity of web page content using Trust Anchor technology.
+  version: "1.0.0"
+  contact:
+    name: Trust Anchor Support
+    email: support@trustanchor.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  externalDocs:
+    description: Privacy Policy
+    url: http://localhost:3000/privacy-policy.html
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /api/verify:
+    post:
+      summary: Verify content authenticity
+      description: Verifies the content of a given URL using Trust Anchor cryptographic signatures
+      operationId: verifyContent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - url
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: The full URL of the page to verify
+                  example: "http://localhost:8080/demo/sample-company-verified.html"
+      responses:
+        '200':
+          description: Verification result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  verified:
+                    type: boolean
+                    description: Whether the content was successfully verified
+                  status:
+                    type: string
+                    description: Human-readable status message
+                  details:
+                    type: string
+                    description: Detailed explanation of the verification result
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: UTC timestamp of when verification was performed
+                required:
+                  - verified
+                  - status
+                  - details
+                  - timestamp
+              examples:
+                success:
+                  summary: Successful verification
+                  value:
+                    verified: true
+                    status: "✅ Content Verified"
+                    details: "The content on this page was successfully verified against the signature provided by the owner."
+                    timestamp: "2025-01-20T10:30:45.123Z"
+                failure:
+                  summary: Failed verification
+                  value:
+                    verified: false
+                    status: "❌ Verification Failed"
+                    details: "No ai-trust-anchor meta tag found"
+                    timestamp: "2025-01-20T10:30:45.123Z"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message 

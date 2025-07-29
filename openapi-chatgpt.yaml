@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: Trust Anchor Verification API
+  description: A service to cryptographically verify the authenticity of web page content.
+  version: "1.0.0"
+  contact:
+    name: Trust Anchor Support
+    email: support@trustanchor.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  externalDocs:
+    description: Privacy Policy
+    url: http://localhost:3000/privacy-policy.html
+servers:
+  - url: 'http://127.0.0.1:3000'
+paths:
+  /api/verify:
+    post:
+      summary: Verifies the content of a given URL
+      description: This action takes a URL, fetches its content, and checks for a valid Trust Anchor cryptographic signature in the meta tags.
+      operationId: verifyUrlContent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  description: The full URL of the page to verify.
+                  example: "https://your-demo-page.com/sample-company.html"
+      responses:
+        '200':
+          description: The verification result, including a status and details.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  verified:
+                    type: boolean
+                    description: A simple true/false result of the verification.
+                  status:
+                    type: string
+                    description: A short, human-readable status message.
+                  details:
+                    type: string
+                    description: A longer explanation of the verification result.
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The UTC timestamp of when the verification was performed.
+              examples:
+                success:
+                  summary: Example of a successful verification
+                  value:
+                    verified: true
+                    status: "✅ Content Verified"
+                    details: "The content on this page was successfully verified against the signature provided by the owner."
+                    timestamp: "2025-07-19T18:30:00Z"
+                failure:
+                  summary: Example of a failed verification
+                  value:
+                    verified: false
+                    status: "❌ Verification Failed"
+                    details: "The content could not be verified. Reason: Hash Mismatch."
+                    timestamp: "2025-07-19T18:35:00Z" 
